@@ -180,6 +180,8 @@ RUN set -eux; \
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
 
+RUN touch /root/upcfile_$( date '+%Y-%m-%d_%H-%M-%S' )
+
 ENV PGDATA /var/lib/postgresql/data
 # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
 RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA"
